@@ -1,0 +1,23 @@
+<mat-form-field class="demo-chip-list">
+	<mat-chip-list #chipList>
+		<mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+			(removed)="remove(fruit)">
+			{{fruit.name}}
+			<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+		</mat-chip>
+		<input placeholder="New fruit..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)" />
+  </mat-chip-list>
+		<mat-error *ngIf="chipList.errorState">Too many chips</mat-error>
+		<mat-hint>Can only contain 3 chips max</mat-hint>
+</mat-form-field>
+
+<button (click)="setError()">Set error state</button>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
